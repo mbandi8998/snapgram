@@ -5,7 +5,6 @@ import {
     useInfiniteQuery,
   } from "@tanstack/react-query";
   
-  import { QUERY_KEYS } from "@/lib/react-query/queryKeys";
   import {
     createUserAccount,
     signInAccount,
@@ -27,6 +26,7 @@ import {
     deleteSavedPost,
   } from "@/lib/appwrite/api";
   import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
+import { QUERY_KEYS } from "./queryKeys";
   
   // ============================================================
   // AUTH QUERIES
@@ -54,7 +54,6 @@ import {
   // ============================================================
   // POST QUERIES
   // ============================================================
-  
   export const useGetPosts = () => {
     return useInfiniteQuery({
       queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
@@ -69,6 +68,7 @@ import {
         const lastId = lastPage.documents[lastPage.documents.length - 1].$id;
         return lastId;
       },
+      initialPageParam: 1, // Set an initial page parameter here
     });
   };
   
